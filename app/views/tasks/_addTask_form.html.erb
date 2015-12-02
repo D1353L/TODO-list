@@ -1,0 +1,10 @@
+<div id="addTask_form" class="span4" align="center">
+  <%= form_for @task, :url => add_task_path(:project_id => project.id), remote: true do |f|%>
+      <h4>Name: </h4><%= f.text_field :name %><br><br>
+
+      <%= f.submit class: 'btn btn-primary' do%>
+          <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+          Add new project
+      <%end%>
+  <%end%>
+</div>

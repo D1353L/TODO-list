@@ -1,12 +1,9 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.all
-    @project = Project.new
   end
 
   def create
-    @projects = Project.all
     project = Project.create(:name => params[:project][:name])
 
     unless project.valid?
@@ -23,9 +20,16 @@ class ProjectsController < ApplicationController
   end
 
   def delete
-    @projects = Project.all
     project = Project.find_by_id(params[:id])
+    tasks = Task.where(:project_id => params[:id])
+
+    unless tasks.nil? || tasks.empty?
+      tasks.each do |task|
+        task.delete
+      end
+    end
     project.delete
+
     respond_to do |format|
       format.html
       format.js {render 'projects/refresh_list'}
