@@ -15,3 +15,8 @@
  *= require_tree .
  *= require_self
  */
+
+body{
+  background: image-url('background.png') center center no-repeat fixed;
+  background-size: cover;
+}

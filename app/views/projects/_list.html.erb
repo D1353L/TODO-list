@@ -1,19 +1,26 @@
 <div align="center">
-  <% unless @projects.nil? || @projects.empty?%>
-      <% @projects.each do |project| %>
-          <h4><%= project.name %></h4>
-          <%= link_to "Delete", delete_project_path(:id=> project.id), :remote => true %>
-          <% project.tasks.each do |task| %>
-              <%= task.name %>
-              <%= link_to "Delete", tasks_delete_path(:id=> task.id), :remote => true %>
-          <% end %>
+    <% unless @projects.nil? || @projects.empty?%>
+        <% @projects.each do |project| %>
+          <div class="panel panel-primary" align="center" style="width: 50%;">
+            <div class="panel-heading" style="background: #4573B1; color: #b3ffff;">
+              <h4 style ="display: inline;"><%= project.name %></h4>
+              <%= link_to "Delete", delete_project_path(id: project.id), remote: true, style: 'color: #9AB1D3;'%>
+              <br>
+            </div>
+            <div class="panel-body">
+              <%= render 'tasks/addTask_form', :project => project%>
 
-          <%= render 'tasks/addTask_form', :project => project%>
-
-      <% end %>
-  <% else %>
-      <h4>There are no any projects for you.</h4>
-  <% end %>
+              <% project.tasks.each do |task| %>
+                  <%= task.name %>
+                  <%= link_to "Delete", tasks_delete_path(id: task.id), remote: true %>
+                  <br>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+    <% else %>
+        <h4>There are no any projects for you.</h4>
+    <% end %>
 
   <% unless flash[:error].nil? %>
       <div class="alert">
@@ -22,4 +29,5 @@
         <strong><%= flash[:error] %></strong>
       </div>
   <% end %>
+
 </div>

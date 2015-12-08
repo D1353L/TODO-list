@@ -2,7 +2,7 @@
 <%= form_for @project, url: :create_project, remote: true do |f|%>
     <h4>Name: </h4><%= f.text_field :name, :id=>"projectName" %><br><br>
 
-    <%= f.submit class: 'btn btn-primary' do%>
+    <%= f.submit class: 'btn btn-primary', id: 'addNewProject' do%>
         <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
         Add new project
     <%end%>
