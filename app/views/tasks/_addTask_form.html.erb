@@ -1,10 +1,8 @@
-<div id="addTask_form" class="span4" align="center">
-  <%= form_for @task, :url => add_task_path(:project_id => project.id), remote: true do |f|%>
-      <h4 style ="display: inline;">Name: </h4><%= f.text_field :name %>
-
-      <%= f.submit class: 'btn btn-primary', style: 'background: #76AD8E;' do%>
-          <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
-          Add new project
-      <%end%>
-  <%end%>
-</div>
+<%= form_for @task, :url => add_task_path(:project_id => project.id), remote: true do |f|%>
+    <div class="input-group">
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Start typing here to create a task...' %>
+      <span class="input-group-btn">
+        <%= f.submit class: 'btn btn-default', value: 'Add task', style: 'background: #669D7F;' %>
+      </span>
+    </div>
+<%end%>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'projects/update' => "projects#update", as: :update_project
 
   post 'tasks/add' => "tasks#add", as: :add_task
-  get 'tasks/update'
-  get 'tasks/delete'
+  get 'tasks/update' => "tasks#update", as: :update_task
+  get 'tasks/delete' => "tasks#delete", as: :delete_task
 
 end
