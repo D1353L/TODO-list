@@ -18,7 +18,8 @@ class TasksController < ApplicationController
 
   def delete
     task = Task.find_by_id(params[:id])
-    task.delete
+    task.destroy
+	
     respond_to do |format|
       format.html
       format.js {render 'projects/refresh_list'}

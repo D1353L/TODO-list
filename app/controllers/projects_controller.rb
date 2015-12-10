@@ -21,14 +21,7 @@ class ProjectsController < ApplicationController
 
   def delete
     project = Project.find_by_id(params[:id])
-    tasks = Task.where(:project_id => params[:id])
-
-    unless tasks.nil? || tasks.empty?
-      tasks.each do |task|
-        task.delete
-      end
-    end
-    project.delete
+    project.destroy
 
     respond_to do |format|
       format.html
