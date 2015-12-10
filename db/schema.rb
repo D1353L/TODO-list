@@ -24,17 +24,10 @@ ActiveRecord::Schema.define(version: 20151102193450) do
 
   create_table "tasks", force: true do |t|
     t.string   "name"
-    t.string   "status"
+    t.boolean  "completed",  default: false
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "todos", force: true do |t|
-    t.string   "todo_item"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "completed"
   end
 
   add_foreign_key "tasks", "projects", name: "tasks_project_id_fk"

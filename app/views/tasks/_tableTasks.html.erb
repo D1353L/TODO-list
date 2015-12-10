@@ -2,7 +2,9 @@
   <tbody>
   <% project.tasks.each do |task| %>
       <tr class="taskRow">
-        <td><%= check_box_tag  "tasks_checkbox[]", task.id%></td>
+        <td>
+          <%= check_box_tag 'task_checkbox', task.id, task.completed %>
+        </td>
 
         <td width="90%"><%= task.name %></td>
 

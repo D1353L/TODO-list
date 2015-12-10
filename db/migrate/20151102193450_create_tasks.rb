@@ -3,7 +3,7 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
 
       t.string :name
-      t.string :status
+      t.boolean :completed, default: false
       t.integer :project_id
 
       t.timestamps

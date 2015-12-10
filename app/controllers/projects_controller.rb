@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
       format.js {render 'projects/refresh_list'}
     end
   end
@@ -20,11 +19,9 @@ class ProjectsController < ApplicationController
   end
 
   def delete
-    project = Project.find_by_id(params[:id])
-    project.destroy
+    Project.find_by_id(params[:id]).destroy
 
     respond_to do |format|
-      format.html
       format.js {render 'projects/refresh_list'}
     end
   end
