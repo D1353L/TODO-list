@@ -7,6 +7,13 @@ $(document).ready ->
     $(this).find('div').hide()
 
   $(document).on 'change', '#task_checkbox', ->
-    $.post('tasks/change_status?id='+$(this).val())
+    $.post('tasks/change_status?id='+$(this).val());
+
+  $('.sortable').sortable (
+    axis: 'y'
+    items: '.taskRow'
+    handle: '#sort'
+    cursor: 'move'
+  )
 
 return
