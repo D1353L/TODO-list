@@ -4,6 +4,7 @@ class CreateTasks < ActiveRecord::Migration
 
       t.string :name
       t.boolean :completed, default: false
+      t.integer :priority
       t.integer :project_id
 
       t.timestamps

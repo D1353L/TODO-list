@@ -22,6 +22,13 @@ class TasksController < ApplicationController
     render nothing: true
   end
 
+  def sort
+    params[:order].each do |key,value|
+      Task.find(value[:id]).update_attribute(:priority,value[:position])
+    end
+    render nothing: true
+  end
+
   def delete
     Task.find_by_id(params[:id]).destroy
 	

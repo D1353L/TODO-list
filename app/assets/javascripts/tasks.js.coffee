@@ -7,7 +7,7 @@ $(document).ready ->
     $(this).find('div').hide()
 
   $(document).on 'change', '#task_checkbox', ->
-    $.post('tasks/change_status?id='+$(this).val());
+    $.ajax {type: "PUT", url: 'tasks/change_status', data: {id: $(this).val()}};
 
   $('.sortable').sortable (
     axis: 'y'
@@ -15,5 +15,13 @@ $(document).ready ->
     handle: '#sort'
     cursor: 'move'
   )
+
+  $(document).on 'sortupdate', '.sortable', ->
+    # array to store new order
+    updated_order = []
+    # the updated_order array with the new task positions
+    $('.taskRow').each (i) -> updated_order.push { id: $(this).attr("id"), position: i+1 }
+    # send the updated order via ajax
+    $.ajax {type: "PUT", url: '/tasks/sort', data: { order: updated_order }}
 
 return

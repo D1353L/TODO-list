@@ -1,2 +1,3 @@
-$("#projectName").val("")
-$("div#list").empty().append("<%= j render('projects/list') %>");
+$('#projectName').val('');
+$('div#list').empty().append("<%= j render('projects/list') %>");
+$('.sortable').sortable({axis: 'y', items: '.taskRow', handle: '#sort', cursor: 'move'});

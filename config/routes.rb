@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   post 'tasks/add' => "tasks#add", as: :add_task
   get 'tasks/update' => "tasks#update", as: :update_task
-  post 'tasks/change_status' => "tasks#change_status", as: :change_task_status
+  put 'tasks/change_status' => "tasks#change_status", as: :change_task_status
   get 'tasks/delete' => "tasks#delete", as: :delete_task
+  put 'tasks/sort' => "tasks#sort", as: :sort_tasks
 
 end
