@@ -1,0 +1,11 @@
+#list
+  = render 'list'
+%br
+  %br
+    = render 'addProject_form'
+    .container
+      .row
+        .span4{:align => "center"}
+          = button_tag id: 'addProject',class: "btn btn-primary" do
+            %i.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
+            Add new project

@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title TodoList
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  %body{"data-no-turbolinks" => "true"}
+    .page-header{:style => "border-style: none;"}
+      %h1{:align => "center"}
+        SIMPLE TODO LIST
+        %small{:style => "color: #b3ffff;"} by Nikita Mohylov
+    = yield

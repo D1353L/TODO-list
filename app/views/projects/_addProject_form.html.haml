@@ -1,0 +1,9 @@
+#addProject_form.span4{:align => "center"}
+  = form_for @project, url: :create_project, remote: true do |f|
+    %h4 Name:
+    = f.text_field :name, :id=>"projectName"
+    %br
+      %br
+        = f.submit class: 'btn btn-primary', id: 'addNewProject' do
+          %i.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
+          Add new project
