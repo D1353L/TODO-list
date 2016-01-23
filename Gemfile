@@ -5,6 +5,8 @@ gem 'autoprefixer-rails'
 gem 'foreigner'
 gem 'jquery-ui-rails'
 gem 'haml'
+gem 'rails_12factor'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
