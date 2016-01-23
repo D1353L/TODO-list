@@ -6,6 +6,7 @@ gem 'foreigner'
 gem 'jquery-ui-rails'
 gem 'haml'
 gem 'rails_12factor'
+gem 'bootstrap-editable-rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
