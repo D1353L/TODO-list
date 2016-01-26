@@ -7,12 +7,14 @@ $(document).ready ->
 
   $('#addProject, #addNewProject').on "click", ->
     $('html, body').animate({ scrollTop: $(document).height() }, 1500)
+####
 
 #Hide project options
   $(document).on 'mouseover', '.projectHead', ->
     $(this).find('.projectOptions').show()
   $(document).on 'mouseout', '.projectHead', ->
     $(this).find('.projectOptions').hide()
+####
 
 #Enable Edit project form
   $.fn.editable.defaults.mode = 'inline'
@@ -29,3 +31,7 @@ $(document).ready ->
     $(this).closest('.row').find('#projectName').editable 'toggle'
   $('#projectName').on 'hidden', (e, reason) ->
     $(this).editable 'disable'
+
+  $(document).on 'click', '.projectHead .editable-submit',->
+    $.ajax {type: "PUT", url: '/projects/update', data: {id: $(this).closest('.row').attr("id"), new_value: $('.input-sm').val() }}
+####

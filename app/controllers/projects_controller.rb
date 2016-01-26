@@ -16,6 +16,13 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    project = Project.update(Project.find_by_id(params[:id]), name: params[:new_value])
+
+    unless project.valid?
+      flash[:error] = project.errors.full_messages.join('<br>').html_safe
+    end
+
+    render nothing: true
   end
 
   def delete

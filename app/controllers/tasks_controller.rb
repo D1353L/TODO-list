@@ -13,15 +13,17 @@ class TasksController < ApplicationController
   end
 
   def update
-    t = Task.find_by_id(params[:id])
-    t.update_attribute(:name, params[:new_value])
+    task = Task.update(Task.find_by_id(params[:id]), name: params[:new_value])
+
+    unless task.valid?
+      flash[:error] = task.errors.full_messages.join('<br>').html_safe
+    end
 
     render nothing: true
   end
 
   def change_status
-    t = Task.find_by_id(params[:id])
-    t.update_attribute(:completed, !t.completed)
+    Task.find_by_id(params[:id]).update_attribute(:completed, !t.completed)
 
     render nothing: true
   end
