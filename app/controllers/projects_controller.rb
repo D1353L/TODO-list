@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    project = Project.create(:name => params[:project][:name])
+    project = Project.create(:name => params[:project_name][:value])
 
     unless project.valid?
       flash[:error] = project.errors.full_messages.join('<br>').html_safe

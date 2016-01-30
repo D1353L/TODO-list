@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   def add
-    task = Task.create_new_task(params[:task][:name], params[:project_id])
+    task = Task.create_new_task(params[:task_name], params[:project_id])
 
     unless task.valid?
       flash[:error] = task.errors.full_messages.join('<br>').html_safe

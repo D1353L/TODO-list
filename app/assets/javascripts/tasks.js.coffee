@@ -1,11 +1,28 @@
 $(document).ready ->
-#Enable sorting
-  $('.sortable').sortable (
-    axis: 'y'
-    items: '.taskRow'
-    handle: '#sort'
-    cursor: 'move'
-  )
+#Add task
+  $(document).on 'click', '.addNewTask', (e)->
+    taskField = $(this).closest('.input-group').find('.newTaskName')
+    project = $(this).closest('.project')
+
+    if taskField.val()
+      $.ajax {
+        type: 'post',
+        url: '/tasks/add',
+        data: {task_name: taskField.val(), project_id: project.attr('id')}
+      }
+    else
+      taskField.attr('placeholder', 'Name can\'t be blank')
+      $(this).closest('.input-group').addClass('has-error')
+####
+
+#Sort tasks
+  $(document).on 'mousemove',->
+    $('.sortable').sortable (
+      axis: 'y'
+      items: '.taskRow'
+      handle: '#sort'
+      cursor: 'move'
+    )
   $(document).on 'sortupdate', '.sortable', ->
     updated_order = []
     $('.taskRow').each (i) ->
@@ -13,23 +30,32 @@ $(document).ready ->
     $.ajax {type: "PUT", url: '/tasks/sort', data: { order: updated_order }}
 ####
 
-#Enable Edit task form
-  $.fn.editable.defaults.send = "always"
-  $('.taskName').editable 'disable'
+#Edit task
+  $.fn.editable.defaults.mode = 'inline'
+  $('.taskName').off('click')
+
+  $(document).on 'mousemove',->
+    $('.taskName').editable
+      mode: 'inline',
+      validate: (value)->
+        if !value
+          return "Name can't be blank"
+      url: ->
+        $.ajax {
+          type: 'put',
+          url: '/tasks/update',
+          data: {id: $(this).closest('tr').attr("id"), new_value: $('.input-sm').val() }
+        }
 
   $(document).on 'click', '.editTask', (e)->
     e.stopPropagation()
-    $(this).closest('tr').find('.taskName').editable 'enable'
     $(this).closest('tr').find('.taskName').editable 'toggle'
 
   $('.taskName').on 'hidden', (e, reason) ->
-    $(this).editable 'disable'
-
-  $(document).on 'click', '.taskRow .editable-submit',->
-    $.ajax {type: "PUT", url: '/tasks/update', data: {id: $(this).closest('tr').attr("id"), new_value: $('.input-sm').val() }}
+    $(this).off('click')
 ####
 
-#Hide task options
+#Hide/show task options
   $(document).on 'mouseover', '.taskRow', (e)->
     $(this).find('.taskOptions').show()
   $(document).on 'mouseout', '.taskRow', (e)->

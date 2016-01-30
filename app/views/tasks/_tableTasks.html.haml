@@ -17,5 +17,5 @@
             %span.editTask.glyphicon.glyphicon-pencil{"aria-hidden" => "true", :style => "color: #99B1D2; cursor: pointer;"}
             %div{:style => "color: #99B1D2; display: inline; cursor: default;"}
             |
-            = link_to delete_task_path(id: task.id), remote: true, method: 'put', style: 'color: #99B1D2;' do
+            = link_to delete_task_path(id: task.id), remote: true, method: 'delete', style: 'color: #99B1D2;' do
               %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"}

@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :project
-  validates :name, presence: true
+  validates :name, :project_id, presence: true
   default_scope {order('priority ASC')}
 
   def self.create_new_task(name, project_id)
