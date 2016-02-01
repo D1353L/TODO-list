@@ -1,8 +1,5 @@
 $(document).ready ->
 #Add new project
-  $('span4 .editable-submit').on "click", ->
-    $('html, body').animate({ scrollTop: $(document).height() }, 1500)
-
   $('#addNewProject').editable
     value : '',
     display: false,

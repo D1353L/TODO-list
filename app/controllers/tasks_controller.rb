@@ -23,7 +23,8 @@ class TasksController < ApplicationController
   end
 
   def change_status
-    Task.find_by_id(params[:id]).update_attribute(:completed, !t.completed)
+    task = Task.find_by_id(params[:id])
+    task.update_attribute(:completed, !task.completed)
 
     render nothing: true
   end
