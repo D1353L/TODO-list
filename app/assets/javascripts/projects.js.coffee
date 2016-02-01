@@ -8,8 +8,10 @@ $(document).ready ->
     display: false,
     mode: 'popup',
     validate: (value)->
+      if value.length > 255
+        return 'Name is too long. Maximum 255 characters'
       if !value
-        return "Name can't be blank"
+        return 'Name can\'t be blank'
     url: (value)->
       $.ajax {
         type: 'post',
@@ -30,8 +32,13 @@ $(document).ready ->
     $('.projectName').editable
       mode: 'inline',
       validate: (value)->
+        $('.editable-input').tooltip('destroy')
+        if value.length > 255
+          $('.editable-input').tooltip(title: 'Name is too long. Maximum 255 characters', placement: 'left')
+          return ' '
         if !value
-          return "Name can't be blank"
+          $('.editable-input').tooltip(title: 'Name can\'t be blank', placement: 'left')
+          return ' '
       url: ->
         $.ajax {
         type: 'put',

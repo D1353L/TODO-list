@@ -3,16 +3,22 @@ $(document).ready ->
   $(document).on 'click', '.addNewTask', (e)->
     taskField = $(this).closest('.input-group').find('.newTaskName')
     project = $(this).closest('.project')
+    taskField.tooltip('destroy')
+    taskField.attr('placeholder', 'Start typing here to create a task...')
 
-    if taskField.val()
-      $.ajax {
-        type: 'post',
-        url: '/tasks/add',
-        data: {task_name: taskField.val(), project_id: project.attr('id')}
-      }
-    else
-      taskField.attr('placeholder', 'Name can\'t be blank')
+    if taskField.val().length > 255
+      taskField.tooltip(title: 'Name is too long. Maximum 255 characters', placement: 'left')
       $(this).closest('.input-group').addClass('has-error')
+    else
+      if taskField.val()
+        $.ajax {
+          type: 'post',
+          url: '/tasks/add',
+          data: {task_name: taskField.val(), project_id: project.attr('id')}
+        }
+      else
+        taskField.attr('placeholder', 'Name can\'t be blank')
+        $(this).closest('.input-group').addClass('has-error')
 ####
 
 #Sort tasks
@@ -38,6 +44,8 @@ $(document).ready ->
     $('.taskName').editable
       mode: 'inline',
       validate: (value)->
+        if value.length > 255
+          return 'Name is too long. Maximum 255 characters'
         if !value
           return "Name can't be blank"
       url: ->
