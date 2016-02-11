@@ -7,7 +7,17 @@
     = csrf_meta_tags
   %body{"data-no-turbolinks" => "true"}
     .page-header{:style => "border-style: none;"}
-      %h1{:align => "center"}
+      %div#auth{:align => "right", :style => "margin-right: 40px;"}
+        - if user_signed_in?
+          %span
+            Hi, #{current_user.email}
+          = link_to 'Sign Out', destroy_user_session_path, :method => :delete, :style => "color: #b3ffff;"
+        - else
+          = link_to 'Sign In', new_user_session_path, :style => "color: #b3ffff;"
+          | #{link_to 'Sign Up', new_user_registration_path, :style => "color: #b3ffff;"}
+
+      %h1{:align => "center", :style => "margin-top: 0px"}
         SIMPLE TODO LIST
         %small{:style => "color: #b3ffff;"} by Nikita Mohylov
-    = yield
+
+= yield

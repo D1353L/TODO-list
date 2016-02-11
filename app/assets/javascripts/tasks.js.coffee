@@ -13,7 +13,7 @@ $(document).ready ->
       if taskField.val()
         $.ajax {
           type: 'post',
-          url: '/tasks/add',
+          url: '/tasks/create',
           data: {task_name: taskField.val(), project_id: project.attr('id')}
         }
       else

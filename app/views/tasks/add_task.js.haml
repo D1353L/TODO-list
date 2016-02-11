@@ -1,0 +1,2 @@
+$("div#" + "#{j task.project_id.to_s}").find(".newTaskName").val('');
+$("div#" + "#{j task.project_id.to_s}" + " div.panel div.panel-body table > tbody:last-child").append("#{j render('tasks/taskRow', :task => task)}");

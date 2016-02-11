@@ -1,0 +1,23 @@
+.project{:id=> project.id}
+  .projectHead.panel-heading{:style => "background: #466FAF; color: #b3ffff; width: 50%"}
+    .row
+      .col-md-1
+        %span.glyphicon.glyphicon-list-alt{"aria-hidden" => "true", :style => "font-size: 1.6em; cursor: default;"}
+
+      .col-md-9
+        %h4.projectName.editable.editable-click.inline-input{:style => "display: inline;"}
+          = project.name
+
+      .col-md-2{:style => "font-size: 1.3em;"}
+        .projectOptions{:style => "display: none;"}
+          %span.editProject.glyphicon.glyphicon-pencil{"aria-hidden" => "true", :style => "color: #99B1D2; cursor: pointer;"}
+          %div{:style => "color: #99B1D2; display: inline; cursor: default;"}
+          |
+          = link_to delete_project_path(id: project.id), remote: true, method: 'delete', style: 'color: #99B1D2;' do
+            %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"}
+
+  .panel.panel-primary{:align => "center", :style => "width: 50%;"}
+    .panel-heading{:style => "background: #CECECE; color: #b3ffff;"}
+      = render 'tasks/addTask_form', :project => project
+    .panel-body
+      = render 'tasks/tableTasks', :project => project

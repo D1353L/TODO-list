@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-  def add
+  def create
     task = Task.create_new_task(params[:task_name], params[:project_id])
 
     unless task.valid?
@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     end
 
     respond_to do |format|
-      format.js {render 'projects/refresh_list'}
+      format.js {render 'tasks/add_task', :locals => {:task=>task}}
     end
   end
 
@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     Task.find_by_id(params[:id]).destroy
 	
     respond_to do |format|
-      format.js {render 'projects/refresh_list'}
+      format.js {render 'tasks/delete_task', :locals => {:id=>params[:id]}}
     end
   end
 end

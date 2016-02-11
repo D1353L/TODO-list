@@ -4,14 +4,14 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    project = Project.create(:name => params[:project_name][:value])
+    project = Project.create(:name => params[:project_name][:value], :user_id => current_user.id)
 
     unless project.valid?
       flash[:error] = project.errors.full_messages.join('<br>').html_safe
     end
 
     respond_to do |format|
-      format.js {render 'projects/refresh_list'}
+      format.js {render 'projects/add_project', :locals => {:project=>project}}
     end
   end
 
@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
     Project.find_by_id(params[:id]).destroy
 
     respond_to do |format|
-      format.js {render 'projects/refresh_list'}
+      format.js {render 'projects/delete_project', :locals => {:id=>params[:id]}}
     end
   end
 end

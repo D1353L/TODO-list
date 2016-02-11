@@ -1,0 +1,18 @@
+%tr.taskRow{:id=> task.id}
+  %td
+    = check_box_tag 'task_checkbox', task.id, task.completed
+
+  %td{:width => "90%"}
+    %span.taskName.editable
+      =task.name
+
+  %td{:width => "10%"}
+    %div.taskOptions{:style => "display: none;"}
+      %span#sort.glyphicon.glyphicon-sort{"aria-hidden" => "true", :style => "color: #99B1D2; cursor: default;"}
+      %div{:style => "color: #99B1D2; display: inline; cursor: default;"}
+      |
+      %span.editTask.glyphicon.glyphicon-pencil{"aria-hidden" => "true", :style => "color: #99B1D2; cursor: pointer;"}
+      %div{:style => "color: #99B1D2; display: inline; cursor: default;"}
+      |
+      = link_to delete_task_path(id: task.id), remote: true, method: 'delete', style: 'color: #99B1D2;' do
+        %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"}
