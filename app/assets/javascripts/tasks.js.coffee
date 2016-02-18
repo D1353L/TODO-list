@@ -7,6 +7,7 @@ $(document).ready ->
     inputGroup.removeClass('has-error')
     taskField.tooltip('destroy')
     taskField.attr('placeholder', 'Start typing here to create a task...')
+    $(this).closest('.input-group').removeClass('has-error')
 
     if taskField.val().length > 255
       taskField.tooltip(title: 'Name is too long. Maximum 255 characters', placement: 'left')
