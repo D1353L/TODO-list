@@ -2,23 +2,29 @@ $(document).ready ->
 #Add task
   $(document).on 'click', '.addNewTask', (e)->
     taskField = $(this).closest('.input-group').find('.newTaskName')
+    inputGroup = $(this).closest('.input-group')
     project = $(this).closest('.project')
+    inputGroup.removeClass('has-error')
     taskField.tooltip('destroy')
     taskField.attr('placeholder', 'Start typing here to create a task...')
 
     if taskField.val().length > 255
       taskField.tooltip(title: 'Name is too long. Maximum 255 characters', placement: 'left')
-      $(this).closest('.input-group').addClass('has-error')
+      inputGroup.addClass('has-error')
     else
       if taskField.val()
         $.ajax {
           type: 'post',
           url: '/tasks/create',
           data: {task_name: taskField.val(), project_id: project.attr('id')}
+          error: (jqXHR, error, errorThrown) ->
+            inputGroup.addClass('has-error')
+            taskField.tooltip(title: jqXHR.responseText, placement: 'left')
+            return
         }
       else
         taskField.attr('placeholder', 'Name can\'t be blank')
-        $(this).closest('.input-group').addClass('has-error')
+        inputGroup.addClass('has-error')
 ####
 
 #Sort tasks

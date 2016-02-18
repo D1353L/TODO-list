@@ -30,6 +30,11 @@ body{
   display: inline-block;
 }
 
+.editable{
+  word-wrap: break-word;
+  word-break:break-all;
+}
+
 .form-signin, .form-signup {
   margin: 0 auto;
   max-width: 330px;

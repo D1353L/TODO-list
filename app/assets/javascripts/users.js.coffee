@@ -31,26 +31,25 @@ $(document).ready ->
           valid = false
 
     #Password
-    if password.val().length > 100
-      password.tooltip(title: 'Password is too long. Maximum 100 characters', placement: 'left')
-      password.closest('div').addClass('has-error')
-      valid = false
-    else
-      if !password.val()
-        password.tooltip(title: 'Password can\'t be blank', placement: 'left')
+    if passwordConfirm.length > 0
+      if password.val().length > 100
+        password.tooltip(title: 'Password is too long. Maximum 100 characters', placement: 'left')
         password.closest('div').addClass('has-error')
         valid = false
       else
-        if password.val().length < 8
-          password.tooltip(title: 'Password is too short. Minimum 8 characters', placement: 'left')
+        if !password.val()
+          password.tooltip(title: 'Password can\'t be blank', placement: 'left')
           password.closest('div').addClass('has-error')
           valid = false
-
-    #Password confirmation
-    if passwordConfirm.length > 0 && passwordConfirm.val() != password.val() && password.val()
-      passwordConfirm.tooltip(title: 'Password confirmation doesn\'t match ', placement: 'left')
-      passwordConfirm.closest('div').addClass('has-error')
-      valid = false
+        else
+          if password.val().length < 8
+            password.tooltip(title: 'Password is too short. Minimum 8 characters', placement: 'left')
+            password.closest('div').addClass('has-error')
+            valid = false
+      if passwordConfirm.val() != password.val() && password.val()
+        passwordConfirm.tooltip(title: 'Password confirmation doesn\'t match ', placement: 'left')
+        passwordConfirm.closest('div').addClass('has-error')
+        valid = false
 
     return valid
 ####
