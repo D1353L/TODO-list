@@ -16,14 +16,6 @@ $(document).ready ->
         data: {project_name: value}
       }
 ####
-
-#Hide/show project options
-  $(document).on 'mouseover', '.projectHead', ->
-    $(this).find('.projectOptions').show()
-  $(document).on 'mouseout', '.projectHead', ->
-    $(this).find('.projectOptions').hide()
-####
-
 #Edit project
   $(document).on 'mousemove',->
     $('.projectName').editable
@@ -38,9 +30,9 @@ $(document).ready ->
           return ' '
       url: ->
         $.ajax {
-        type: 'put',
-        url: '/projects/update',
-        data: {id: $(this).closest('.project').attr("id"), new_value: $('.input-sm').val() }
+          type: 'put',
+          url: '/projects/update',
+          data: {id: $(this).closest('.project').attr("id"), new_value: $('.input-sm').val() }
         }
 
   $('.projectName').off('click')

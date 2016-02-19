@@ -69,13 +69,6 @@ $(document).ready ->
     $(this).off('click')
 ####
 
-#Hide/show task options
-  $(document).on 'mouseover', '.taskRow', (e)->
-    $(this).find('.taskOptions').show()
-  $(document).on 'mouseout', '.taskRow', (e)->
-    $(this).find('.taskOptions').hide()
-####
-
 #Change task status
   $(document).on 'change', '#task_checkbox', ->
     $.ajax {type: "PUT", url: 'tasks/change_status', data: {id: $(this).val()}}
