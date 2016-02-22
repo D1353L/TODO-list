@@ -1,3 +1,4 @@
-# TODO-list
-Simple task manager developed on Ruby on Rails.*<br>
-rails-todolist.herokuapp.com*<br>
+= \TODO-list
+Simple task manager developed on Ruby on Rails.
+
+http://rails-todolist.herokuapp.com
