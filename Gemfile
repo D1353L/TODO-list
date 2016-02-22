@@ -1,14 +1,22 @@
 source 'http://rubygems.org'
 
+# JS
+gem 'jquery-ui-rails'
+gem 'bootstrap-editable-rails'
+# CSS
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+# DB relations
 gem 'foreigner'
-gem 'jquery-ui-rails'
-gem 'haml'
+# Heroku
 gem 'rails_12factor'
-gem 'bootstrap-editable-rails'
+# HAML
+gem 'haml'
+# Users authentication
 gem 'devise'
-
+# Testing
+gem 'faker'
+gem 'factory_girl_rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
